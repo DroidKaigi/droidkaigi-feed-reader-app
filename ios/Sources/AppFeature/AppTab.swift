@@ -5,11 +5,9 @@ import HomeFeature
 import MediaFeature
 import Styleguide
 import SwiftUI
-import TimetableFeature
 
 enum AppTab: CaseIterable {
     case home
-    case timetable
     case media
     case favorites
     case about
@@ -24,13 +22,6 @@ enum AppTab: CaseIterable {
                     action: { (action: HomeAction) in
                         AppTabAction.init(action: action)
                     }
-                )
-            )
-        case .timetable:
-            TimetableScreen(
-                store: store.scope(
-                    state: \.timetableState,
-                    action: AppTabAction.timetable
                 )
             )
         case .media:

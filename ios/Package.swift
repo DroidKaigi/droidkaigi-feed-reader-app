@@ -51,10 +51,6 @@ var package = Package(
             targets: ["Styleguide"]
         ),
         .library(
-            name: "TimetableFeature",
-            targets: ["TimetableFeature"]
-        ),
-        .library(
             name: "UIApplicationClient",
             targets: ["UIApplicationClient"]
         ),
@@ -68,10 +64,10 @@ var package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", .exact("0.28.1")),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", .exact("0.33.1")),
         .package(name: "Introspect", url: "https://github.com/siteline/SwiftUI-Introspect.git", .exact("0.1.3")),
         .package(url: "https://github.com/kean/NukeUI.git", .exact("0.6.8")),
-        .package(name: "Firebase", url: "https://github.com/firebase/firebase-ios-sdk.git", .exact("8.7.0")),
+        .package(name: "Firebase", url: "https://github.com/firebase/firebase-ios-sdk.git", .exact("8.12.1")),
         .package(url: "https://github.com/noreasonprojects/ModernAVPlayer.git", .exact("1.7.3")),
         .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", .exact("1.9.0")),
     ],
@@ -99,7 +95,6 @@ var package = Package(
                 .target(name: "Repository"),
                 .target(name: "SettingFeature"),
                 .target(name: "Styleguide"),
-                .target(name: "TimetableFeature"),
                 .target(name: "UIApplicationClient"),
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]
@@ -183,16 +178,6 @@ var package = Package(
             ]
         ),
         .target(
-            name: "TimetableFeature",
-            dependencies: [
-                .target(name: "Component"),
-                .target(name: "Model"),
-                .target(name: "Repository"),
-                .target(name: "Styleguide"),
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
-            ]
-        ),
-        .target(
             name: "UIApplicationClient",
             dependencies: []
         ),
@@ -257,14 +242,6 @@ package.targets.append(contentsOf: [
         name: "SettingFeatureTests",
         dependencies: [
             "SettingFeature",
-            "TestUtils",
-        ],
-        exclude: ["__Snapshots__"]
-    ),
-    .testTarget(
-        name: "TimetableFeatureTests",
-        dependencies: [
-            "TimetableFeature",
             "TestUtils",
         ],
         exclude: ["__Snapshots__"]

@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/mono0926/LicensePlist.git",
         "state": {
           "branch": null,
-          "revision": "b81d514123ca7a669c0d5d3f68109600573075c1",
-          "version": "3.14.2"
+          "revision": "3d365e4ab943774171a75d64da9a71bb2ff7dfa2",
+          "version": "3.17.0"
         }
       },
       {
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
         "state": {
           "branch": null,
-          "revision": "7f4be006fe73211b0fd9666c73dc2f2303ffa756",
-          "version": "0.31.0"
+          "revision": "558628392eb31d37cb251cfe626c53eafd330df6",
+          "version": "0.31.1"
         }
       },
       {
@@ -141,8 +141,8 @@
         "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
         "state": {
           "branch": null,
-          "revision": "9564d61b08a5335ae0a36f789a7d71493eacadfc",
-          "version": "0.3.2"
+          "revision": "e394bf350e38cb100b6bc4172834770ede1b7232",
+          "version": "1.0.3"
         }
       },
       {
@@ -177,8 +177,8 @@
         "repositoryURL": "https://github.com/realm/SwiftLint.git",
         "state": {
           "branch": null,
-          "revision": "e820e750b08bd67bc9d98f4817868e9bc3d5d865",
-          "version": "0.44.0"
+          "revision": "b4a54f32df66008d30f0229446831cb823576c42",
+          "version": "0.46.2"
         }
       },
       {
@@ -201,11 +201,20 @@
       },
       {
         "package": "xcbeautify",
-        "repositoryURL": "https://github.com/thii/xcbeautify.git",
+        "repositoryURL": "https://github.com/tuist/xcbeautify.git",
         "state": {
           "branch": null,
-          "revision": "21c64495bb3eb9a46ecc9b5eea056d06383eb17c",
-          "version": "0.9.1"
+          "revision": "b14660cc03d96889d2144265fbca471ea0076e40",
+          "version": "0.11.0"
+        }
+      },
+      {
+        "package": "XMLCoder",
+        "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
+        "state": {
+          "branch": null,
+          "revision": "f30119af03996939cc4f54e0bf0dda9f88a84da5",
+          "version": "0.13.1"
         }
       },
       {

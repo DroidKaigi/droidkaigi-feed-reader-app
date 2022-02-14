@@ -51,6 +51,7 @@ public let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
             state = .initialized(.init(feedContents: feedContents))
             return .none
         case let .refreshResponse(.failure(error)):
+            print(error)
             state = .errorOccurred
             return .none
         case .appTab:

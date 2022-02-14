@@ -9,7 +9,6 @@ import AboutFeature
 import SwiftUI
 import Model
 import Repository
-import TimetableFeature
 import Styleguide
 
 public struct AppTabState: Equatable {
@@ -21,7 +20,6 @@ public struct AppTabState: Equatable {
         }
     }
     public var homeState: HomeState
-    public var timetableState: TimetableState
     public var mediaState: MediaState
     public var favoritesState: FavoritesState
     public var aboutState: AboutState
@@ -36,7 +34,6 @@ public struct AppTabState: Equatable {
         self.mediaState = MediaState(feedContents: feedContents)
         self.favoritesState = FavoritesState(feedContents: feedContents.filter(\.isFavorited))
         self.aboutState = AboutState()
-        self.timetableState = TimetableState()
     }
 }
 
@@ -48,7 +45,6 @@ public enum AppTabAction {
     case tapPlay(FeedContent)
     case favoriteResponse(Result<String, KotlinError>)
     case answerQuestionnaire
-    case timetable(TimetableAction)
     case media(MediaAction)
     case about(AboutAction)
     case showSetting
@@ -90,15 +86,6 @@ public let appTabReducer = Reducer<AppTabState, AppTabAction, AppEnvironment>.co
         action: /AppTabAction.init(action:),
         environment: { _ in
             .init()
-        }
-    ),
-    timetableReducer.pullback(
-        state: \.timetableState,
-        action: /AppTabAction.timetable,
-        environment: { environment in
-            .init(
-                timetableRepository: environment.timetableRepository
-            )
         }
     ),
     mediaReducer.pullback(
@@ -179,7 +166,7 @@ public let appTabReducer = Reducer<AppTabState, AppTabAction, AppEnvironment>.co
         case let .favoriteResponse(.failure(error)):
             print(error.localizedDescription)
             return .none
-        case .showSetting, .media(.showSetting), .timetable(.loaded(.showSetting)):
+        case .showSetting, .media(.showSetting):
             state.settingState = SettingState()
             return .none
         case .none:
@@ -187,8 +174,6 @@ public let appTabReducer = Reducer<AppTabState, AppTabAction, AppEnvironment>.co
         case .media:
             return .none
         case .about:
-            return .none
-        case .timetable:
             return .none
         case .setting:
             return .none
