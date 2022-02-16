@@ -22,7 +22,11 @@ run-swiftgen-generate-xcfilelists:
 # KMM Module
 .PHONY: create-kmm-framework
 create-kmm-framework:
-	./scripts/create-kmm-framework.sh
+	./scripts/create-kmm-framework.sh dev
+	
+.PHONY: create-release-kmm-framework
+create-release-kmm-framework:
+	./scripts/create-kmm-framework.sh release
 
 .PHONE: build-kmm-module-debug
 build-kmm-module-debug:
