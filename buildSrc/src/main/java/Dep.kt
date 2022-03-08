@@ -105,7 +105,8 @@ object Dep {
     object Accompanist {
         const val insets = "com.google.accompanist:accompanist-insets:0.24.3-alpha"
         const val pager = "com.google.accompanist:accompanist-pager:0.24.3-alpha"
-        const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:0.24.3-alpha"
+        const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:" +
+            "0.24.3-alpha"
         const val systemuicontroller =
             "com.google.accompanist:accompanist-systemuicontroller:0.24.3-alpha"
     }
