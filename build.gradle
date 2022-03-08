@@ -77,6 +77,14 @@ allprojects {
         }
     }
 }
+project.configurations.all {
+    resolutionStrategy.eachDependency { details ->
+        if (details.requested.group == 'org.jetbrains.kotlinx'
+                && !details.requested.name.contains('kotlinx-coroutines-core') ) {
+            details.useVersion Versions.coroutines
+        }
+    }
+}
 
 apply from: file('gradle/dependencyGraph.gradle')
 
