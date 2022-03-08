@@ -58,9 +58,6 @@ kotlin {
     }
 }
 
-// Workaround for issues where types defined in iOS native code cannot be referenced in Android Studio
-//tasks.getByName("preBuild").dependsOn(tasks.getByName("compileKotlinIos"))
-
 task("createXCFramework") {
     this.dependsOn(tasks.getByName("assembleDroidKaigiMPPXCFramework"))
     this.doLast {
