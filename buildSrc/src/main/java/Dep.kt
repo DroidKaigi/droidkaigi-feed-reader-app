@@ -90,7 +90,7 @@ object Dep {
         const val plugin = "com.google.gms:google-services:4.3.5"
     }
 
-    const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.1"
+    const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.2"
     const val ktlint = "com.pinterest:ktlint:0.42.1"
     const val exhaustivePlugin = "app.cash.exhaustive:exhaustive-gradle:0.2.0"
 
