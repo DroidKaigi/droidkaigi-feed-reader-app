@@ -62,9 +62,8 @@ object Dep {
     }
 
     object Coroutines {
-        const val bom = "org.jetbrains.kotlinx:kotlinx-coroutines-bom:${Versions.coroutines}"
-        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
-        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test"
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
 
     object Serialization {

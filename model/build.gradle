@@ -14,7 +14,6 @@ kotlin {
     sourceSets {
         android
         commonMain.dependencies {
-            api project.dependencies.platform(Dep.Coroutines.bom)
             api (Dep.Coroutines.core) {
                 version {
                     strictly Versions.coroutines

@@ -45,7 +45,6 @@ kotlin {
             implementation Dep.Ktor.serialization
             implementation Dep.Ktor.logging
 
-            implementation Dep.Coroutines.bom
             implementation Dep.Coroutines.core
 
             implementation Dep.Serialization.core

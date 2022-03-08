@@ -34,7 +34,6 @@ kotlin {
         commonMain.dependencies {
             api projects.model
 
-            implementation Dep.Coroutines.bom
             implementation(Dep.Coroutines.core) {
                 version {
                     strictly Versions.coroutines

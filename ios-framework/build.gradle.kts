@@ -35,7 +35,6 @@ kotlin {
                 implementation(projects.data.db)
                 api(projects.data.repository)
 
-                implementation(Dep.Coroutines.bom)
                 implementation(Dep.Coroutines.core) {
                     version {
                         strictly(Versions.coroutines)
