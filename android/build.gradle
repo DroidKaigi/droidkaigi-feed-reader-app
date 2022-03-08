@@ -129,7 +129,6 @@ dependencies {
     implementation Dep.Compose.runtime
     implementation Dep.Compose.ui
 
-    implementation Dep.Kotlin.bom
     implementation Dep.Kotlin.stdlib
 
     implementation (Dep.Coroutines.core) {

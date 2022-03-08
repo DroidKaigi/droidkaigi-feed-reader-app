@@ -53,14 +53,12 @@ object Dep {
     }
 
     object Kotlin {
-        const val bom = "org.jetbrains.kotlin:kotlin-bom:1.6.20-RC"
-
         // bom import does not working...
         const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20-RC"
         const val serializationPlugin = "org.jetbrains.kotlin:kotlin-serialization:1.6.20-RC"
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:1.6.20-RC"
         const val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.20-RC"
-        const val reflect = "org.jetbrains.kotlin:kotlin-reflect"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.6.20-RC"
     }
 
     object Coroutines {
