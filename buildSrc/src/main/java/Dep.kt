@@ -1,15 +1,15 @@
 package io.github.droidkaigi.feeder
 
 object Versions {
-    const val compose = "1.1.0"
-    const val coroutines = "1.5.0-native-mt"
+    const val compose = "1.2.0-alpha04"
+    const val coroutines = "1.6.0-native-mt"
 }
 
 object Dep {
     object Compose {
-        const val activity = "androidx.activity:activity-compose:1.4.0"
+        const val activity = "androidx.activity:activity-compose:1.5.0-alpha03"
         const val constraintLayout =
-            "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01"
+            "androidx.constraintlayout:constraintlayout-compose:1.0.0"
         const val navigation = "androidx.navigation:navigation-compose:2.4.0-beta01"
         const val livedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
         const val runtime = "androidx.compose.runtime:runtime:${Versions.compose}"
@@ -46,20 +46,20 @@ object Dep {
     }
 
     object MultiplatformSettings {
-        const val settings = "com.russhwolf:multiplatform-settings:0.7.2"
-        const val coroutines = "com.russhwolf:multiplatform-settings-coroutines:0.7.2"
-        const val datastore = "com.russhwolf:multiplatform-settings-datastore:0.7.2"
-        const val test = "com.russhwolf:multiplatform-settings-test:0.7.2"
+        const val settings = "com.russhwolf:multiplatform-settings:0.8.1"
+        const val coroutines = "com.russhwolf:multiplatform-settings-coroutines:0.8.1"
+        const val datastore = "com.russhwolf:multiplatform-settings-datastore:0.8.1"
+        const val test = "com.russhwolf:multiplatform-settings-test:0.8.1"
     }
 
     object Kotlin {
-        const val bom = "org.jetbrains.kotlin:kotlin-bom:1.6.10"
+        const val bom = "org.jetbrains.kotlin:kotlin-bom:1.6.20-RC"
 
         // bom import does not working...
-        const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
-        const val serializationPlugin = "org.jetbrains.kotlin:kotlin-serialization:1.6.10"
+        const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20-RC"
+        const val serializationPlugin = "org.jetbrains.kotlin:kotlin-serialization:1.6.20-RC"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib"
-        const val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10"
+        const val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.20-RC"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect"
     }
 
@@ -70,7 +70,7 @@ object Dep {
     }
 
     object Serialization {
-        const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.0"
+        const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2"
     }
 
     object KotlinTest {
@@ -80,14 +80,14 @@ object Dep {
     }
 
     object Ktor {
-        const val bom = "io.ktor:ktor-bom:1.6.1"
-        const val core = "io.ktor:ktor-client-core"
-        const val json = "io.ktor:ktor-client-json"
-        const val logging = "io.ktor:ktor-client-logging"
-        const val okHttp = "io.ktor:ktor-client-okhttp"
-        const val ios = "io.ktor:ktor-client-ios"
-        const val serialization = "io.ktor:ktor-client-serialization"
-        const val mock = "io.ktor:ktor-client-mock"
+//        const val bom = "io.ktor:ktor-bom:2.0.0-beta-1"
+        const val core = "io.ktor:ktor-client-core:2.0.0-beta-1"
+        const val json = "io.ktor:ktor-client-json:2.0.0-beta-1"
+        const val logging = "io.ktor:ktor-client-logging:2.0.0-beta-1"
+        const val okHttp = "io.ktor:ktor-client-okhttp:2.0.0-beta-1"
+        const val ios = "io.ktor:ktor-client-ios:2.0.0-beta-1"
+        const val serialization = "io.ktor:ktor-client-serialization:2.0.0-beta-1"
+        const val mock = "io.ktor:ktor-client-mock:2.0.0-beta-1"
     }
 
     object PlayServices {
@@ -106,12 +106,11 @@ object Dep {
     }
 
     object Accompanist {
-        const val insets = "com.google.accompanist:accompanist-insets:0.21.0-beta"
-        const val pager = "com.google.accompanist:accompanist-pager:0.21.0-beta"
-        const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:0.21" +
-            ".0-beta"
+        const val insets = "com.google.accompanist:accompanist-insets:0.24.3-alpha"
+        const val pager = "com.google.accompanist:accompanist-pager:0.24.3-alpha"
+        const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:0.24.3-alpha"
         const val systemuicontroller =
-            "com.google.accompanist:accompanist-systemuicontroller:0.21.0-beta"
+            "com.google.accompanist:accompanist-systemuicontroller:0.24.3-alpha"
     }
 
     object FirebaseCrashlytics {
@@ -119,20 +118,20 @@ object Dep {
         const val android = "com.google.firebase:firebase-crashlytics:17.4.1"
     }
 
-    const val coil = "io.coil-kt:coil-compose:1.3.2"
+    const val coil = "io.coil-kt:coil-compose:2.0.0-rc01"
 
     const val firebaseAuth = "dev.gitlive:firebase-auth:1.2.0"
     const val firebaseMessaging = "com.google.firebase:firebase-messaging-ktx:21.0.1"
 
-    const val playServicesOssLicensesPlugin = "com.google.android.gms:oss-licenses-plugin:0.10.4"
+    const val playServicesOssLicensesPlugin = "com.google.android.gms:oss-licenses-plugin:0.10.5"
     const val playServicesOssLicenses = "com.google.android.gms:play-services-oss-licenses:17.0.0"
 
-    const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.10.2"
+    const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.11.0"
 
     object SQLDelight {
-        const val plugin = "com.squareup.sqldelight:gradle-plugin:1.4.4"
-        const val androidDriver = "com.squareup.sqldelight:android-driver:1.4.4"
-        const val coroutinesExtensions = "com.squareup.sqldelight:coroutines-extensions:1.4.4"
+        const val plugin = "com.squareup.sqldelight:gradle-plugin:1.5.3"
+        const val androidDriver = "com.squareup.sqldelight:android-driver:1.5.3"
+        const val coroutinesExtensions = "com.squareup.sqldelight:coroutines-extensions:1.5.3"
     }
 
     object Flipper {

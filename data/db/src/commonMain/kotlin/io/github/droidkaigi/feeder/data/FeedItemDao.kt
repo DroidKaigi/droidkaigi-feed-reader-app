@@ -10,7 +10,6 @@ import io.github.droidkaigi.feeder.Image
 import io.github.droidkaigi.feeder.Media
 import io.github.droidkaigi.feeder.MultiLangText
 import io.github.droidkaigi.feeder.Speaker
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -251,6 +250,6 @@ fun fakeFeedItemDao(error: AppError? = null): FeedItemDao = object : FeedItemDao
     }
 
     override fun deleteAll() {
-        channel.offer(emptyList())
+        channel.trySend(emptyList()).isSuccess
     }
 }

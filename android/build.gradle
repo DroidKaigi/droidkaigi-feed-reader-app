@@ -95,6 +95,7 @@ android {
     buildFeatures {
         buildConfig false
     }
+    namespace 'io.github.droidkaigi.feeder'
 }
 
 hilt {

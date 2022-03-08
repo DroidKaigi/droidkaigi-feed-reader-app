@@ -250,14 +250,14 @@ fun fakeTimetableItemDao(error: AppError? = null): TimetableItemDao = object : T
     }
 
     override fun replace(items: List<TimetableItem>) {
-        channel.offer((channel.poll() ?: emptyList()) + items)
+        channel.trySend((channel.tryReceive().getOrNull() ?: emptyList()) + items).isSuccess
     }
 
     override fun insert(items: List<TimetableItem>) {
-        channel.offer((channel.poll() ?: emptyList()) + items)
+        channel.trySend((channel.tryReceive().getOrNull() ?: emptyList()) + items).isSuccess
     }
 
     override fun deleteAll() {
-        channel.offer(emptyList())
+        channel.trySend(emptyList()).isSuccess
     }
 }

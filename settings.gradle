@@ -1,3 +1,24 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        // This snippet enables jcenter only for the dependencies described within the block.
+        // Once they are on maven central you can just remove it.
+        // https://github.com/Kotlin/kotlinx.html/issues/173#issuecomment-800504909
+        jcenter {
+            content {
+                includeModule("org.jetbrains.kotlinx", "kotlinx-html-jvm")
+                includeModule("org.jetbrains.kotlinx", "kotlinx-collections-immutable-jvm")
+            }
+        }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven {
+            url "https://androidx.dev/storage/compose-compiler/repository/"
+        }
+        maven { url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev" }
+    }
+}
 rootProject.name = "conference-app-2021"
 include ':android'
 include ':model'
@@ -13,3 +34,4 @@ include ':ios-framework'
 include ':checks'
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+

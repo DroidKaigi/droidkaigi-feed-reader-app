@@ -24,12 +24,8 @@ kotlin {
 
     // The multiplatform libraries do not support hierarchical structures, which breaks the IDE's completion.
     // https://kotlinlang.org/docs/mpp-share-on-platforms.html#share-code-on-similar-platforms
-    def iosTargets = [
-            iosArm64(),
-            iosX64("ios")
-    ]
-    iosTargets.forEach {
-        it.binaries.forEach {
+    ios() {
+        binaries.forEach {
             it.linkerOpts.add("-lsqlite3")
         }
     }
@@ -39,7 +35,7 @@ kotlin {
             api projects.model
 
             implementation Dep.Coroutines.bom
-            implementation (Dep.Coroutines.core) {
+            implementation(Dep.Coroutines.core) {
                 version {
                     strictly Versions.coroutines
                 }
@@ -92,7 +88,6 @@ kotlin {
             implementation Dep.Koin.core
             implementation "com.squareup.sqldelight:native-driver:1.4.4"
         }
-        iosArm64Main.dependsOn(iosMain)
     }
 }
 
@@ -104,4 +99,8 @@ sqldelight {
 
 dependencies {
     kapt Dep.Dagger.hiltAndroidCompiler
+}
+
+android {
+    namespace 'io.github.droidkaigi.feeder.db'
 }

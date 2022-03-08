@@ -36,6 +36,10 @@ kotlin {
         }
     }
 }
+
+android {
+    namespace 'io.github.droidkaigi.feeder.model'
+}
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = "1.8"

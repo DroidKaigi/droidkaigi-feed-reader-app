@@ -2,9 +2,10 @@ package io.github.droidkaigi.feeder.data
 
 import io.github.droidkaigi.feeder.Authenticator
 import io.ktor.client.HttpClient
-import io.ktor.client.features.ResponseException
+import io.ktor.client.plugins.ResponseException
 import io.ktor.client.request.header
 import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
@@ -39,10 +40,10 @@ class AuthApi(
         runCatching {
             // Use httpClient for bypass auth process
             httpClient
-                .post<String>("https://${BuildKonfig.API_END_PONT}/accounts") {
+                .post("https://${BuildKonfig.API_END_PONT}/accounts") {
                     header(HttpHeaders.Authorization, "Bearer $createdIdToken")
                     contentType(ContentType.Application.Json)
-                    body = "{}"
+                    setBody("{}")
                 }
         }.getOrElse {
             if (it !is ResponseException || it.response.status != HttpStatusCode.Conflict) {
