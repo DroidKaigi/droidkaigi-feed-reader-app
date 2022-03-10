@@ -1,4 +1,5 @@
 import io.github.droidkaigi.feeder.Dep
+import io.github.droidkaigi.feeder.Versions
 
 buildscript {
     repositories {
@@ -76,12 +77,13 @@ allprojects {
             ].contains(sourceSet.name)
         }
     }
-}
-project.configurations.all {
-    resolutionStrategy.eachDependency { details ->
-        if (details.requested.group == 'org.jetbrains.kotlinx'
-                && !details.requested.name.contains('kotlinx-coroutines-core') ) {
-            details.useVersion Versions.coroutines
+
+    configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'org.jetbrains.kotlinx'
+                    && details.requested.name.contains('kotlinx-coroutines-core') ) {
+                details.useVersion Versions.coroutines
+            }
         }
     }
 }

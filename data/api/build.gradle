@@ -45,7 +45,11 @@ kotlin {
             implementation Dep.Ktor.serialization
             implementation Dep.Ktor.logging
 
-            implementation Dep.Coroutines.core
+            implementation (Dep.Coroutines.core) {
+                version {
+                    strictly Versions.coroutines
+                }
+            }
 
             implementation Dep.Serialization.core
 
