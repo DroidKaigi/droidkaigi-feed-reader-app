@@ -163,8 +163,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     testImplementation Dep.Coroutines.test
     testImplementation 'io.kotest:kotest-assertions-core:4.3.2'
-    // https://github.com/cashapp/turbine/issues/10
-    testImplementation 'app.cash.turbine:turbine:0.2.1'
+    testImplementation 'app.cash.turbine:turbine:0.7.0'
 
     androidTestImplementation Dep.Jetpack.Test.ext
     androidTestImplementation Dep.Jetpack.Test.espresso
