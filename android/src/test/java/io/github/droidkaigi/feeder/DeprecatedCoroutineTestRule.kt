@@ -13,7 +13,9 @@ import org.junit.runner.Description
     message = "Use CoroutineTestRule. For using Kotlin 1.6 test dispatcher"
 )
 @ExperimentalCoroutinesApi
-class DeprecatedCoroutineTestRule(val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()) :
+class DeprecatedCoroutineTestRule(
+    val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
+) :
     TestWatcher() {
 
     override fun starting(description: Description?) {
