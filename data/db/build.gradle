@@ -85,7 +85,7 @@ kotlin {
 //        }
         iosMain.dependencies {
             implementation Dep.Koin.core
-            implementation "com.squareup.sqldelight:native-driver:1.4.4"
+            implementation Dep.SQLDelight.nativeDriver
         }
     }
 }
