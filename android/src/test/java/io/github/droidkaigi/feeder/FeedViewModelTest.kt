@@ -14,7 +14,8 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -32,9 +33,10 @@ class FeedViewModelTest(
     val coroutineTestRule = CoroutineTestRule()
 
     @Test
-    fun contents() = coroutineTestRule.testDispatcher.runBlockingTest {
+    fun contents() = coroutineTestRule.scope.runTest {
         // Replace when it fixed https://github.com/cashapp/turbine/issues/10
         val feedViewModel = feedViewModelFactory.create()
+        advanceUntilIdle()
 
         val firstContent = feedViewModel.state.value.filteredFeedContents
 
@@ -42,46 +44,54 @@ class FeedViewModelTest(
     }
 
     @Test
-    fun favorite_Add() = coroutineTestRule.testDispatcher.runBlockingTest {
+    fun favorite_Add() = coroutineTestRule.scope.runTest {
         val feedViewModel = feedViewModelFactory.create()
+        advanceUntilIdle()
         val firstContent = feedViewModel.state.value.filteredFeedContents
         firstContent.favorites shouldBe setOf()
 
         feedViewModel.event(ToggleFavorite(firstContent.feedItemContents[0]))
+        advanceUntilIdle()
 
         val secondContent = feedViewModel.state.value.filteredFeedContents
         secondContent.favorites shouldBe setOf(firstContent.feedItemContents[0].id)
     }
 
     @Test
-    fun favorite_Remove() = coroutineTestRule.testDispatcher.runBlockingTest {
+    fun favorite_Remove() = coroutineTestRule.scope.runTest {
         val feedViewModel = feedViewModelFactory.create()
+        advanceUntilIdle()
         val firstContent = feedViewModel.state.value.filteredFeedContents
         firstContent.favorites shouldBe setOf()
 
         feedViewModel.event(ToggleFavorite(feedItem = firstContent.feedItemContents[0]))
+        advanceUntilIdle()
         feedViewModel.event(ToggleFavorite(feedItem = firstContent.feedItemContents[0]))
+        advanceUntilIdle()
 
         val secondContent = feedViewModel.state.value.filteredFeedContents
         secondContent.favorites shouldBe setOf()
     }
 
     @Test
-    fun favorite_Filter() = coroutineTestRule.testDispatcher.runBlockingTest {
+    fun favorite_Filter() = coroutineTestRule.scope.runTest {
         val feedViewModel = feedViewModelFactory.create()
+        advanceUntilIdle()
         val firstContent = feedViewModel.state.value.filteredFeedContents
         firstContent.favorites shouldBe setOf()
         val favoriteContents = firstContent.feedItemContents[1]
 
         feedViewModel.event(ToggleFavorite(feedItem = favoriteContents))
+        advanceUntilIdle()
         feedViewModel.event(ChangeFavoriteFilter(Filters(filterFavorite = true)))
+        advanceUntilIdle()
 
         val secondContent = feedViewModel.state.value.filteredFeedContents
         secondContent.contents[0].first.id shouldBe favoriteContents.id
     }
 
     @Test
-    fun errorWhenFetch() = coroutineTestRule.testDispatcher.runBlockingTest {
+    fun errorWhenFetch() = coroutineTestRule.scope.runTest {
         val feedViewModel = feedViewModelFactory.create(errorFetchData = true)
         val firstContent = feedViewModel.state.value.filteredFeedContents
         firstContent.favorites shouldBe setOf()

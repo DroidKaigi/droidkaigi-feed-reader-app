@@ -14,7 +14,6 @@ kotlin {
     sourceSets {
         android
         commonMain.dependencies {
-            api project.dependencies.platform(Dep.Coroutines.bom)
             api (Dep.Coroutines.core) {
                 version {
                     strictly Versions.coroutines
@@ -35,6 +34,10 @@ kotlin {
             useExperimentalAnnotation("kotlin.contracts.ExperimentalContracts")
         }
     }
+}
+
+android {
+    namespace 'io.github.droidkaigi.feeder.model'
 }
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     kotlinOptions {

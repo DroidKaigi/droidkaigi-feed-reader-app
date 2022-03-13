@@ -23,7 +23,7 @@ class ContributorViewModelTest(
 ) {
 
     @get:Rule
-    val coroutineTestRule = CoroutineTestRule()
+    val coroutineTestRule = DeprecatedCoroutineTestRule()
 
     @Test
     fun contents() = coroutineTestRule.testDispatcher.runBlockingTest {

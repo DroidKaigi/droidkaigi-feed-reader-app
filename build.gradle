@@ -1,4 +1,5 @@
 import io.github.droidkaigi.feeder.Dep
+import io.github.droidkaigi.feeder.Versions
 
 buildscript {
     repositories {
@@ -15,8 +16,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.1'
-        classpath Dep.Kotlin.bom
+        classpath 'com.android.tools.build:gradle:7.1.2'
         classpath Dep.Kotlin.plugin
         classpath Dep.Kotlin.stdlibJdk8
         classpath Dep.Kotlin.serializationPlugin
@@ -34,31 +34,7 @@ plugins {
     id 'com.diffplug.spotless' version '5.7.0'
 }
 
-
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        // This snippet enables jcenter only for the dependencies described within the block.
-        // Once they are on maven central you can just remove it.
-        // https://github.com/Kotlin/kotlinx.html/issues/173#issuecomment-800504909
-        jcenter {
-            content {
-                includeModule("org.jetbrains.kotlinx", "kotlinx-html-jvm")
-                includeModule("org.jetbrains.kotlinx", "kotlinx-collections-immutable-jvm")
-            }
-        }
-        maven { url 'https://androidx.dev/snapshots/builds/6767375/artifacts/ui/repository' }
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
     apply plugin: 'com.diffplug.spotless'
     spotless {
         ratchetFrom 'origin/main'
@@ -87,6 +63,26 @@ allprojects {
             jvmTarget = "1.8"
             compilerArgs.forEach { compilerArg ->
                 freeCompilerArgs += compilerArg
+            }
+        }
+    }
+    afterEvaluate {
+        def ext = project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension)
+        ext?.sourceSets?.removeAll { sourceSet ->
+            [
+                    "androidAndroidTestRelease",
+                    "androidTestFixtures",
+                    "androidTestFixturesDebug",
+                    "androidTestFixturesRelease"
+            ].contains(sourceSet.name)
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'org.jetbrains.kotlinx'
+                    && details.requested.name.contains('kotlinx-coroutines-core') ) {
+                details.useVersion Versions.coroutines
             }
         }
     }

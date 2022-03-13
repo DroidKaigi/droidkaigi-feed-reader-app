@@ -1,8 +1,8 @@
 package io.github.droidkaigi.feeder.data
 
 import io.github.droidkaigi.feeder.AppError
-import io.ktor.client.features.ResponseException
-import io.ktor.network.sockets.SocketTimeoutException
+import io.ktor.client.network.sockets.SocketTimeoutException
+import io.ktor.client.plugins.ResponseException
 import io.ktor.util.cio.ChannelReadException
 import kotlinx.coroutines.TimeoutCancellationException
 

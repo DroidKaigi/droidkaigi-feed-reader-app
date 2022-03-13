@@ -10,7 +10,6 @@ import io.github.droidkaigi.feeder.Image
 import io.github.droidkaigi.feeder.Media
 import io.github.droidkaigi.feeder.MultiLangText
 import io.github.droidkaigi.feeder.Speaker
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -31,7 +30,6 @@ internal class FeedItemDaoImpl(database: Database) : FeedItemDao {
     private val podcastSpeakerQueries: FeedItemPodcastSpeakerQueries =
         database.feedItemPodcastSpeakerQueries
 
-    @ExperimentalCoroutinesApi
     override fun selectAll(): Flow<List<FeedItem>> {
         val blogFeeds = blogQueries.selectAll(blogQueriesMapper).asFlow().mapToList()
         val podcastFeeds =
@@ -248,10 +246,10 @@ fun fakeFeedItemDao(error: AppError? = null): FeedItemDao = object : FeedItemDao
     }
 
     override fun insert(feeds: List<FeedItem>) {
-        channel.offer((channel.poll() ?: emptyList()) + feeds)
+        channel.trySend((channel.tryReceive().getOrNull() ?: emptyList()) + feeds)
     }
 
     override fun deleteAll() {
-        channel.offer(emptyList())
+        channel.trySend(emptyList()).isSuccess
     }
 }
