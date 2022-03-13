@@ -52,6 +52,7 @@ kotlin {
             }
 
             implementation Dep.Serialization.core
+            implementation Dep.Serialization.json
 
             api Dep.datetime
         }
