@@ -5,6 +5,7 @@ import io.github.droidkaigi.feeder.data.request.DevicePostRequest
 import io.github.droidkaigi.feeder.data.request.DevicePutRequest
 import io.github.droidkaigi.feeder.data.request.platform
 import io.github.droidkaigi.feeder.data.response.DeviceResponse
+import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 
@@ -18,7 +19,7 @@ open class KtorDeviceApi(
         needAuth = true
     ) {
         contentType(ContentType.Application.Json)
-        body = DevicePostRequest(platform())
+        setBody(DevicePostRequest(platform()))
     }.toDeviceInfo()
 
     override suspend fun update(deviceId: String, deviceToken: String?): DeviceInfo =
@@ -27,7 +28,7 @@ open class KtorDeviceApi(
             needAuth = true
         ) {
             contentType(ContentType.Application.Json)
-            body = DevicePutRequest(deviceToken)
+            setBody(DevicePutRequest(deviceToken))
         }.toDeviceInfo()
 }
 

@@ -24,12 +24,8 @@ kotlin {
 
     // The multiplatform libraries do not support hierarchical structures, which breaks the IDE's completion.
     // https://kotlinlang.org/docs/mpp-share-on-platforms.html#share-code-on-similar-platforms
-    def iosTargets = [
-            iosArm64(),
-            iosX64("ios")
-    ]
-    iosTargets.forEach {
-        it.binaries.forEach {
+    ios() {
+        binaries.forEach {
             it.linkerOpts.add("-lsqlite3")
         }
     }
@@ -39,8 +35,8 @@ kotlin {
             api projects.model
             implementation projects.data.db
 
-            implementation Dep.Ktor.bom
-            implementation (Dep.Coroutines.core) {
+//            implementation Dep.Ktor.bom
+            implementation(Dep.Coroutines.core) {
                 version {
                     strictly Versions.coroutines
                 }
@@ -49,10 +45,14 @@ kotlin {
             implementation Dep.Ktor.serialization
             implementation Dep.Ktor.logging
 
-            implementation Dep.Coroutines.bom
-            implementation Dep.Coroutines.core
+            implementation (Dep.Coroutines.core) {
+                version {
+                    strictly Versions.coroutines
+                }
+            }
 
             implementation Dep.Serialization.core
+            implementation Dep.Serialization.json
 
             api Dep.datetime
         }
@@ -60,7 +60,7 @@ kotlin {
             implementation Dep.KotlinTest.common
             implementation Dep.KotlinTest.annotationCommon
 
-            implementation Dep.Ktor.bom
+//            implementation Dep.Ktor.bom
             implementation Dep.Ktor.mock
         }
 //        jvmMain
@@ -97,7 +97,6 @@ kotlin {
             implementation Dep.Ktor.ios
             implementation Dep.Koin.core
         }
-        iosArm64Main.dependsOn(iosMain)
     }
 }
 
@@ -114,4 +113,8 @@ buildkonfig {
 
 dependencies {
     kapt Dep.Dagger.hiltAndroidCompiler
+}
+
+android {
+    namespace 'io.github.droidkaigi.feeder.api'
 }

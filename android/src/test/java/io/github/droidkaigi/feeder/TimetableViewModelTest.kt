@@ -16,7 +16,8 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -34,7 +35,7 @@ class TimetableViewModelTest(
     val coroutineTestRule = CoroutineTestRule()
 
     @Test
-    fun contents() = coroutineTestRule.testDispatcher.runBlockingTest {
+    fun contents() = coroutineTestRule.scope.runTest {
         // Replace when it fixed https://github.com/cashapp/turbine/issues/10
         val timetableViewModel = timetableViewModelFactory.create()
 
@@ -44,7 +45,7 @@ class TimetableViewModelTest(
     }
 
     @Test
-    fun errorWhenFetch() = coroutineTestRule.testDispatcher.runBlockingTest {
+    fun errorWhenFetch() = coroutineTestRule.scope.runTest {
         val timetableViewModel = timetableViewModelFactory.create(errorFetchData = true)
         val state = timetableViewModel.state.value
 
@@ -54,19 +55,21 @@ class TimetableViewModelTest(
     }
 
     @Test
-    fun favorite_Add() = coroutineTestRule.testDispatcher.runBlockingTest {
+    fun favorite_Add() = coroutineTestRule.scope.runTest {
         val timetableViewModel = timetableViewModelFactory.create()
+        advanceUntilIdle()
         val firstContent = timetableViewModel.state.value.filteredTimetableContents
         firstContent.favorites shouldBe setOf()
 
         timetableViewModel.event(ToggleFavorite(firstContent.timetableItems[0]))
+        advanceUntilIdle()
 
         val secondContent = timetableViewModel.state.value.filteredTimetableContents
         secondContent.favorites shouldBe setOf(firstContent.timetableItems[0].id)
     }
 
     @Test
-    fun favorite_Remove() = coroutineTestRule.testDispatcher.runBlockingTest {
+    fun favorite_Remove() = coroutineTestRule.scope.runTest {
         val timetableViewModel = timetableViewModelFactory.create()
         val firstContent = timetableViewModel.state.value.filteredTimetableContents
         firstContent.favorites shouldBe setOf()
@@ -79,14 +82,17 @@ class TimetableViewModelTest(
     }
 
     @Test
-    fun favorite_Filter() = coroutineTestRule.testDispatcher.runBlockingTest {
+    fun favorite_Filter() = coroutineTestRule.scope.runTest {
         val timetableViewModel = timetableViewModelFactory.create()
+        advanceUntilIdle()
         val firstContent = timetableViewModel.state.value.filteredTimetableContents
         firstContent.favorites shouldBe setOf()
         val favoriteContent = firstContent.timetableItems[1]
 
         timetableViewModel.event(ToggleFavorite(favoriteContent))
+        advanceUntilIdle()
         timetableViewModel.event(ChangeFavoriteFilter(Filters(filterFavorite = true)))
+        advanceUntilIdle()
 
         val secondContent = timetableViewModel.state.value.filteredTimetableContents
         secondContent.contents[0].first.id shouldBe favoriteContent.id

@@ -21,6 +21,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'io.github.droidkaigi.feeder.core'
 
 }
 
@@ -30,7 +31,6 @@ dependencies {
     // Java 8+ API desugaring support
     coreLibraryDesugaring Dep.desugarJdkLibs
 
-    implementation Dep.Kotlin.bom
     implementation Dep.Kotlin.stdlibJdk8
 
     implementation Dep.Jetpack.appcompat
