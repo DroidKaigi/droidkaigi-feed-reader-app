@@ -47,7 +47,7 @@ fun fakeDroidKaigi2021Api(error: AppError? = null): DroidKaigi2021Api = object :
         "en": "Welcome Talk"
       },
       "description": null,
-      "startsAt": "2021-10-20T10:00:00+09:00",
+          "startsAt": "2021-10-20T10:00:00+09:00",
       "endsAt": "2021-10-20T10:20:00+09:00",
       "isServiceSession": true,
       "isPlenumSession": false,

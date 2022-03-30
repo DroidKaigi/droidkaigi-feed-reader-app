@@ -16,7 +16,7 @@ interface NotificationViewModel :
         > {
     data class State(
         val showProgress: Boolean = false,
-        val notificationContents: NotificationContents = TODO(), /* fakeNotificationContents() */
+        val notificationContents: NotificationContents = NotificationContents(),
     )
 
     sealed class Effect {
