@@ -10,5 +10,4 @@ import org.junit.runner.RunWith
 class NotificationItemTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
-
 }
