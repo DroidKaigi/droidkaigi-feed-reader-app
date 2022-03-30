@@ -4,53 +4,41 @@ import io.github.droidkaigi.feeder.Versions
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-kapt'
     id 'app.cash.exhaustive'
-    id 'dagger.hilt.android.plugin'
 }
 
 apply from: rootProject.file("gradle/android.gradle")
 apply from: rootProject.file("gradle/compose.gradle")
 
 android {
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
     compileOptions {
         coreLibraryDesugaringEnabled true // need for test. https://github.com/DroidKaigi/conference-app-2021/issues/373
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/AL2.0', 'META-INF/LGPL2.1']
+        }
     }
-    namespace 'io.github.droidkaigi.feeder.main'
+    namespace 'io.github.droidkaigi.feeder.notification'
 }
 
 dependencies {
     api projects.uicomponentCompose.core
-    api projects.uicomponentCompose.feed
-    api projects.uicomponentCompose.notification
-    api projects.uicomponentCompose.timetable2021
-    api projects.uicomponentCompose.other
     api projects.model
 
     // Java 8+ API desugaring support
     coreLibraryDesugaring Dep.desugarJdkLibs
 
-    // Hilt
-    implementation Dep.Dagger.hiltAndroid
-    kapt Dep.Dagger.hiltAndroidCompiler
-
-    // For instrumentation tests
-    androidTestImplementation Dep.Dagger.hiltAndroidTesting
-    kaptAndroidTest Dep.Dagger.hiltAndroidCompiler
-
-    // For local unit tests
-    testImplementation Dep.Dagger.hiltAndroidTesting
-    kaptTest Dep.Dagger.hiltAndroidCompiler
-
     implementation Dep.Jetpack.appcompat
     implementation Dep.coil
     implementation Dep.Accompanist.insets
-    implementation Dep.Accompanist.systemuicontroller
+    implementation Dep.Accompanist.pager
+    implementation Dep.Accompanist.pagerIndicators
 
     implementation (Dep.Coroutines.core) {
         version {
@@ -60,9 +48,7 @@ dependencies {
 
     // Write here to get from JetNews
     // https://github.com/android/compose-samples/blob/master/JetNews/app/build.gradle#L66
-    implementation Dep.Compose.activity
     implementation Dep.Compose.navigation
-    implementation Dep.Compose.hiltNavigationCompose
     implementation Dep.Compose.runtime
     implementation Dep.Compose.livedata
     implementation Dep.Compose.foundation
@@ -72,7 +58,10 @@ dependencies {
     implementation Dep.Compose.material
     implementation Dep.Compose.iconsExtended
     implementation Dep.Compose.animation
+    implementation Dep.Compose.constraintLayout
+    androidTestImplementation Dep.Compose.test
 
     // Android
     implementation Dep.Jetpack.browser
+    implementation Dep.playServicesOssLicenses
 }
