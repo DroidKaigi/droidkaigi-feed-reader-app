@@ -64,7 +64,9 @@ class DataModule {
     }
 
     @Provides
-    internal fun provideNotificationRepository(daggerRepository: DaggerNotificationRepositoryImpl): NotificationRepository {
+    internal fun provideNotificationRepository(
+        daggerRepository: DaggerNotificationRepositoryImpl,
+    ): NotificationRepository {
         return daggerRepository
     }
 

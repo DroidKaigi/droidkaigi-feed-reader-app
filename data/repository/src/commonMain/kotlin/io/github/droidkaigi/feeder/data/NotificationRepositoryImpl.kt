@@ -21,7 +21,8 @@ open class NotificationRepositoryImpl(
     }
 
     override suspend fun refresh() {
-        notificationContents.value = NotificationContents(notificationItems = notificationApi.fetch(getAppliedLanguage()))
+        notificationContents.value =
+            NotificationContents(notificationItems = notificationApi.fetch(getAppliedLanguage()))
     }
 
     private suspend fun getAppliedLanguage(): NotificationApi.Language {
