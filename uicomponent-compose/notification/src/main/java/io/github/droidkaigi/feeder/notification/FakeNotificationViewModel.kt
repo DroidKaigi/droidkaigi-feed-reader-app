@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import io.github.droidkaigi.feeder.AppError
 import io.github.droidkaigi.feeder.NotificationContents
 import io.github.droidkaigi.feeder.fakeNotificationContents
+import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Runnable
@@ -18,7 +19,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
 
 fun fakeNotificationViewModel(errorFetchData: Boolean = false): FakeNotificationViewModel {
     return FakeNotificationViewModel(errorFetchData)

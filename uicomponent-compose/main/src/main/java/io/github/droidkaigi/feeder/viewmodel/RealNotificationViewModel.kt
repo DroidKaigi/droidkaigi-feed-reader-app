@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.droidkaigi.feeder.AppError
 import io.github.droidkaigi.feeder.notification.NotificationViewModel
 import io.github.droidkaigi.feeder.repository.NotificationRepository
+import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
@@ -14,7 +15,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 // TODO: Temporary implementation, modify later.
 @HiltViewModel

@@ -1,6 +1,5 @@
 package io.github.droidkaigi.feeder.data
 
-import io.github.droidkaigi.feeder.Logger
 import io.github.droidkaigi.feeder.NotificationItem
 import io.github.droidkaigi.feeder.data.response.NotificationResponse
 
