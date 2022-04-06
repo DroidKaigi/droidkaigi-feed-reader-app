@@ -1,5 +1,6 @@
 package io.github.droidkaigi.feeder.data
 
+import io.github.droidkaigi.feeder.Logger
 import io.github.droidkaigi.feeder.NotificationItem
 import io.github.droidkaigi.feeder.data.response.NotificationResponse
 
@@ -21,10 +22,10 @@ fun NotificationResponse.toNotificationList(): List<NotificationItem> {
             id = announcement.id,
             title = announcement.title,
             content = announcement.content,
-            type = announcement.type,
+            type = NotificationItem.Type.from(announcement.type),
             publishedAt = announcement.publishedAt,
             deletedAt = announcement.deletedAt,
-            language = announcement.language,
+            language = NotificationItem.Language.from(announcement.language),
         )
     }
 }

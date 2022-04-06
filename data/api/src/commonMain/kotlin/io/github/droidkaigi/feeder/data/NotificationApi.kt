@@ -45,7 +45,6 @@ fun fakeNotificationApi(error: AppError? = null): NotificationApi = object : Not
             			"title": "title",
             			"content": "content",
             			"publishedAt": "2022-02-18T10:58:40.496234Z",
-            			"deletedAt": null,
             			"type": "FEEDBACK",
             			"language": "japanese"
             		},
@@ -54,7 +53,6 @@ fun fakeNotificationApi(error: AppError? = null): NotificationApi = object : Not
             			"title": "title",
             			"content": "content",
             			"publishedAt": "2022-02-17T10:58:40.497223Z",
-            			"deletedAt": null,
             			"type": "NOTIFICATION",
             			"language": "japanese"
             		},

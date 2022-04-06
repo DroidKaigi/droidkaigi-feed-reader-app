@@ -12,7 +12,8 @@ data class Announcement(
     val type: String,
     @Contextual
     val publishedAt: Instant,
-    val deletedAt: String,
+    @Contextual
+    val deletedAt: Instant? = null,
     val language: String,
 )
 

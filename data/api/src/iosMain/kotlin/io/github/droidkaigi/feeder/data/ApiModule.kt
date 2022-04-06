@@ -39,4 +39,8 @@ val apiModule = module {
     single<StaffApi> {
         KtorStaffApi(get())
     }
+
+    single<NotificationApi> {
+        KtorNotificationApi(get())
+    }
 }
