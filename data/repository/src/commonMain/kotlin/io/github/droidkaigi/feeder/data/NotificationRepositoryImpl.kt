@@ -27,8 +27,8 @@ open class NotificationRepositoryImpl(
 
     private suspend fun getAppliedLanguage(): NotificationApi.Language {
         return when (dataStore.language().firstOrNull()) {
-            Lang.JA -> NotificationApi.Language.Japanese()
-            else -> NotificationApi.Language.English()
+            Lang.JA -> NotificationApi.Language.JAPANESE
+            else -> NotificationApi.Language.ENGLISH
         }
     }
 }

@@ -4,7 +4,6 @@ import io.github.droidkaigi.feeder.AppError
 import io.github.droidkaigi.feeder.NotificationItem
 import io.github.droidkaigi.feeder.data.response.InstantSerializer
 import io.github.droidkaigi.feeder.data.response.NotificationResponse
-import kotlin.jvm.JvmInline
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
@@ -13,14 +12,10 @@ import kotlinx.serialization.modules.contextual
 interface NotificationApi {
     suspend fun fetch(language: Language): List<NotificationItem>
 
-    sealed interface Language {
-        val id: String
-
-        @JvmInline
-        value class Japanese(override val id: String = "japanese") : Language
-
-        @JvmInline
-        value class English(override val id: String = "english") : Language
+    enum class Language(val id: String) {
+        JAPANESE("japanese"),
+        ENGLISH("english"),
+        ;
     }
 }
 
