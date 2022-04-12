@@ -22,7 +22,7 @@ data class NotificationItem(
             fun from(typeStr: String): Type {
                 return values().find { type ->
                     type.value == typeStr
-                } ?: throw IllegalArgumentException("Not Supported value.")
+                } ?: NOTIFICATION // Return default value.
             }
         }
     }
@@ -36,7 +36,7 @@ data class NotificationItem(
             fun from(languageStr: String): Language {
                 return values().find { language ->
                     language.value == languageStr
-                } ?: throw IllegalArgumentException("Not Supported value.")
+                } ?: JAPANESE // Return default value.
             }
         }
     }
