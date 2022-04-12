@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-// TODO: Temporary implementation, modify later.
 @HiltViewModel
 class RealNotificationViewModel @Inject constructor(
     private val notificationRepository: NotificationRepository,
