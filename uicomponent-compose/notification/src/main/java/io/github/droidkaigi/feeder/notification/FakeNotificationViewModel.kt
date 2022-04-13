@@ -24,7 +24,7 @@ fun fakeNotificationViewModel(errorFetchData: Boolean = false): FakeNotification
     return FakeNotificationViewModel(errorFetchData)
 }
 
-class FakeNotificationViewModel(val errorFetchData: Boolean) : NotificationViewModel, ViewModel() {
+class FakeNotificationViewModel(errorFetchData: Boolean) : NotificationViewModel, ViewModel() {
 
     private val effectChannel = Channel<NotificationViewModel.Effect>(Channel.UNLIMITED)
     override val effect: Flow<NotificationViewModel.Effect> = effectChannel.receiveAsFlow()
@@ -42,11 +42,9 @@ class FakeNotificationViewModel(val errorFetchData: Boolean) : NotificationViewM
     )
     private val errorNotificationContents = flow<NotificationContents> {
         throw AppError.ApiException.ServerException(null)
-    }
-        .catch { error ->
-            effectChannel.send(NotificationViewModel.Effect.ErrorMessage(error as AppError))
-        }
-        .stateIn(coroutineScope, SharingStarted.Lazily, fakeNotificationContents())
+    }.catch { error ->
+        effectChannel.send(NotificationViewModel.Effect.ErrorMessage(error as AppError))
+    }.stateIn(coroutineScope, SharingStarted.Lazily, fakeNotificationContents())
 
     private val notificationContents: StateFlow<NotificationContents> = if (errorFetchData) {
         errorNotificationContents
@@ -59,8 +57,7 @@ class FakeNotificationViewModel(val errorFetchData: Boolean) : NotificationViewM
             NotificationViewModel.State(
                 notificationContents = notificationContents,
             )
-        }
-            .stateIn(coroutineScope, SharingStarted.Eagerly, NotificationViewModel.State())
+        }.stateIn(coroutineScope, SharingStarted.Eagerly, NotificationViewModel.State())
 
     override fun event(event: NotificationViewModel.Event) {
         coroutineScope.launch {
