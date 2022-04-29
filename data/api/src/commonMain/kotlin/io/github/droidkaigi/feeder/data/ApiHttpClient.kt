@@ -4,12 +4,12 @@ import io.github.droidkaigi.feeder.data.response.InstantSerializer
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngineConfig
 import io.ktor.client.engine.HttpClientEngineFactory
-import io.ktor.client.features.defaultRequest
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.json.JsonPlugin
+import io.ktor.client.plugins.json.serializer.KotlinxSerializer
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.headers
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
@@ -23,7 +23,8 @@ object ApiHttpClient {
     ): HttpClient where T : HttpClientEngineConfig {
         return HttpClient(engineFactory) {
             engine(block)
-            install(JsonFeature) {
+            // FIXME: Migrate to ContentNegotiation
+            install(JsonPlugin) {
                 serializer = KotlinxSerializer(
                     Json {
                         serializersModule = SerializersModule {

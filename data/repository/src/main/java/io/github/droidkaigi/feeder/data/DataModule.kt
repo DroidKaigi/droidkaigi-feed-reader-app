@@ -8,6 +8,7 @@ import io.github.droidkaigi.feeder.repository.ContributorRepository
 import io.github.droidkaigi.feeder.repository.DeviceRepository
 import io.github.droidkaigi.feeder.repository.FeedRepository
 import io.github.droidkaigi.feeder.repository.LanguageRepository
+import io.github.droidkaigi.feeder.repository.NotificationRepository
 import io.github.droidkaigi.feeder.repository.StaffRepository
 import io.github.droidkaigi.feeder.repository.ThemeRepository
 import io.github.droidkaigi.feeder.repository.TimetableRepository
@@ -33,6 +34,11 @@ class DataModule {
     }
 
     @Provides
+    internal fun provideNotificationApi(daggerApi: DaggerKtorNotificationApi): NotificationApi {
+        return daggerApi
+    }
+
+    @Provides
     internal fun provideDeviceApi(daggerApi: DaggerKtorDeviceApi): DeviceApi {
         return daggerApi
     }
@@ -54,6 +60,13 @@ class DataModule {
 
     @Provides
     internal fun provideFeedRepository(daggerRepository: DaggerFeedRepositoryImpl): FeedRepository {
+        return daggerRepository
+    }
+
+    @Provides
+    internal fun provideNotificationRepository(
+        daggerRepository: DaggerNotificationRepositoryImpl,
+    ): NotificationRepository {
         return daggerRepository
     }
 

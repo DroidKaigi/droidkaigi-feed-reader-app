@@ -14,12 +14,8 @@ kotlin {
     android()
 
     val xcf = XCFramework("DroidKaigiMPP")
-    val iosTargets = listOf(
-        iosArm64(),
-        iosX64("ios")
-    )
-    iosTargets.forEach {
-        it.binaries {
+    ios {
+        binaries {
             framework {
                 baseName = "DroidKaigiMPP"
                 export(projects.model)
@@ -39,7 +35,6 @@ kotlin {
                 implementation(projects.data.db)
                 api(projects.data.repository)
 
-                implementation(Dep.Coroutines.bom)
                 implementation(Dep.Coroutines.core) {
                     version {
                         strictly(Versions.coroutines)
@@ -58,20 +53,15 @@ kotlin {
                 implementation(Dep.Koin.core)
             }
         }
-        val iosArm64Main by getting {
-            dependsOn(iosMain)
-        }
         val iosTest by getting
     }
 }
 
-// Workaround for issues where types defined in iOS native code cannot be referenced in Android Studio
-tasks.getByName("preBuild").dependsOn(tasks.getByName("compileKotlinIos"))
-
 task("createXCFramework") {
     this.dependsOn(tasks.getByName("assembleDroidKaigiMPPXCFramework"))
     this.doLast {
-        val buildDir = tasks.getByName("assembleDroidKaigiMPPXCFramework").project.buildDir.absolutePath
+        val buildDir =
+            tasks.getByName("assembleDroidKaigiMPPXCFramework").project.buildDir.absolutePath
         val outputFile = File("$buildDir/XCFrameworks/debug/DroidKaigiMPP.xcframework")
         val targetFile = File("$buildDir/../../ios/build/xcframeworks/DroidKaigiMPP.xcframework")
         outputFile.copyRecursively(target = targetFile)
@@ -86,4 +76,8 @@ task("createReleaseXCFramework") {
         val targetFile = File("$buildDir/../../ios/build/xcframeworks/DroidKaigiMPP.xcframework")
         outputFile.copyRecursively(target = targetFile)
     }
+}
+
+android {
+    namespace = "io.github.droidkaigi.feeder"
 }

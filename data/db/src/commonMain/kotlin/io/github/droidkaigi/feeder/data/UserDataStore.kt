@@ -7,6 +7,8 @@ import io.github.droidkaigi.feeder.FeedItemId
 import io.github.droidkaigi.feeder.Lang
 import io.github.droidkaigi.feeder.Theme
 import io.github.droidkaigi.feeder.TimetableItemId
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -31,7 +33,9 @@ abstract class UserDataStore {
         flowSettings.putString(
             KEY_FAVORITES,
             (favorites().first() + id)
-                .map { it.value }
+                .map {
+                    it.value
+                }
                 .toSet()
                 .joinToString(","),
         )
@@ -137,6 +141,7 @@ abstract class UserDataStore {
     }
 }
 
-fun fakeUserDataStore() = object : UserDataStore() {
-    override val flowSettings: FlowSettings = MockSettings().toFlowSettings()
-}
+fun fakeUserDataStore(dispatcher: CoroutineDispatcher = Dispatchers.Main) =
+    object : UserDataStore() {
+        override val flowSettings: FlowSettings = MockSettings().toFlowSettings(dispatcher)
+    }
