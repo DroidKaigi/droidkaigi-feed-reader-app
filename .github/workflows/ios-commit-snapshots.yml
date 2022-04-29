@@ -65,4 +65,4 @@ jobs:
           delete-branch: true
           branch-suffix: short-commit-hash
           title: "[iOS] Update iOS Snapshots"
-          reviewers: ry-itto,ostk0069
+          reviewers: ry-itto
