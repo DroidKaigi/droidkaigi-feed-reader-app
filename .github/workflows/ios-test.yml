@@ -145,7 +145,9 @@ jobs:
             gradle/**
       - name: Copy GoogleService-Info.plist
         working-directory: ./ios
-        run: cp "DroidKaigi Feeder/DroidKaigi Feeder/Debug/GoogleService-Info.plist" "DroidKaigi Feeder/DroidKaigi Feeder/Release/GoogleService-Info.plist"
+        run: |
+          mkdir -p "DroidKaigi Feeder/DroidKaigi Feeder/Release"
+          cp "DroidKaigi Feeder/DroidKaigi Feeder/Debug/GoogleService-Info.plist" "DroidKaigi Feeder/DroidKaigi Feeder/Release/GoogleService-Info.plist"
       - name: Generate Strings & Colors & Assets
         working-directory: ./ios
         run: make run-swiftgen
