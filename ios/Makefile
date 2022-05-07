@@ -4,7 +4,6 @@ WORKSPACE=DroidKaigiFeeder.xcworkspace
 .PHONY: open
 open:
 	@open $(WORKSPACE)
-
 # SwiftLint
 .PHONY: run-swiftlint
 run-swiftlint:
@@ -22,7 +21,11 @@ run-swiftgen-generate-xcfilelists:
 # KMM Module
 .PHONY: create-kmm-framework
 create-kmm-framework:
-	./scripts/create-kmm-framework.sh
+	./scripts/create-kmm-framework.sh dev
+	
+.PHONY: create-release-kmm-framework
+create-release-kmm-framework:
+	./scripts/create-kmm-framework.sh release
 
 .PHONE: build-kmm-module-debug
 build-kmm-module-debug:
@@ -36,25 +39,25 @@ build-kmm-module-release:
 .PHONY: test-app-debug
 test-app-debug:
 	make build-kmm-module-debug
-	./scripts/xcodebuild.sh test "DroidKaigi Feeder" Debug
+	./scripts/xcodebuild.sh test "DroidKaigi Feeder (Debug project)" Debug
 
 # Test App Release
 .PHONY: test-app-release
 test-app-release:
 	make build-kmm-module-release
-	./scripts/xcodebuild.sh test "DroidKaigi Feeder" Release
+	./scripts/xcodebuild.sh test "DroidKaigi Feeder (Release project)" Release
 
 # Build App Debug
 .PHONY: build-app-debug
 build-app-debug:
 	make build-kmm-module-debug
-	./scripts/xcodebuild.sh build "DroidKaigi Feeder" Debug
+	./scripts/xcodebuild.sh build "DroidKaigi Feeder (Debug project)" Debug
 
 # Build App Release
 .PHONY: build-app-release
 build-app-release:
 	make build-kmm-module-release
-	./scripts/xcodebuild.sh build "DroidKaigi Feeder" Release
+	./scripts/xcodebuild.sh build "DroidKaigi Feeder (Release project)" Release
 
 # Build Modules
 .PHONY: build-modules

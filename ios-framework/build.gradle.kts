@@ -67,6 +67,17 @@ task("createXCFramework") {
         outputFile.copyRecursively(target = targetFile)
     }
 }
+
+task("createReleaseXCFramework") {
+    this.dependsOn(tasks.getByName("assembleDroidKaigiMPPXCFramework"))
+    this.doLast {
+        val buildDir = tasks.getByName("assembleDroidKaigiMPPXCFramework").project.buildDir.absolutePath
+        val outputFile = File("$buildDir/XCFrameworks/release/DroidKaigiMPP.xcframework")
+        val targetFile = File("$buildDir/../../ios/build/xcframeworks/DroidKaigiMPP.xcframework")
+        outputFile.copyRecursively(target = targetFile)
+    }
+}
+
 android {
     namespace = "io.github.droidkaigi.feeder"
 }

@@ -39,15 +39,16 @@ public struct FavoritesScreen: View {
                 }
             }
             .navigationBarTitle(L10n.FavoriteScreen.title, displayMode: .large)
-            .navigationBarItems(
-                trailing: Button(action: {
-                    ViewStore(store).send(.showSetting)
-                }, label: {
-                    AssetImage.iconSetting.image
-                        .renderingMode(.template)
-                        .foregroundColor(AssetColor.Base.primary.color)
-                })
-            )
+            // TODO: enable when setting implemented
+//            .navigationBarItems(
+//                trailing: Button(action: {
+//                    ViewStore(store).send(.showSetting)
+//                }, label: {
+//                    AssetImage.iconSetting.image
+//                        .renderingMode(.template)
+//                        .foregroundColor(AssetColor.Base.primary.color)
+//                })
+//            )
         }
     }
 }

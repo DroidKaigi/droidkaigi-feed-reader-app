@@ -13,6 +13,7 @@
 		8CC238E1271C0347008487E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC238D9271C0347008487E5 /* Preview Assets.xcassets */; };
 		8CC238E2271C0347008487E5 /* DroidKaigiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC238DA271C0347008487E5 /* DroidKaigiApp.swift */; };
 		E821C045265FFF8B00C3785D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = E821C044265FFF8B00C3785D /* AppFeature */; };
+		E840B75E27B966F70020E07D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E840B75D27B966F70020E07D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8CC238DA271C0347008487E5 /* DroidKaigiApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroidKaigiApp.swift; sourceTree = "<group>"; };
 		8CC238DB271C0347008487E5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD4A5CEA61EB3D46200CC240 /* DroidKaigi Feeder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DroidKaigi Feeder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E840B75D27B966F70020E07D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 		8CC238D7271C0347008487E5 /* Release */ = {
 			isa = PBXGroup;
 			children = (
+				E840B75D27B966F70020E07D /* GoogleService-Info.plist */,
 			);
 			path = Release;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			files = (
 				8CC238E1271C0347008487E5 /* Preview Assets.xcassets in Resources */,
 				8CC238DF271C0347008487E5 /* Settings.bundle in Resources */,
+				E840B75E27B966F70020E07D /* GoogleService-Info.plist in Resources */,
 				8CC238E0271C0347008487E5 /* Assets.xcassets in Resources */,
 				8CC238DE271C0347008487E5 /* Localizable.strings in Resources */,
 			);
@@ -216,7 +220,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DFY27HWN2G;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/DroidKaigi Feeder/Info.plist";
@@ -226,7 +230,7 @@
 					"@executable_path/Frameworks",
 				);
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -235,7 +239,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DFY27HWN2G;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/DroidKaigi Feeder/Info.plist";
@@ -246,7 +250,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.droidkaigi.Feeder;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

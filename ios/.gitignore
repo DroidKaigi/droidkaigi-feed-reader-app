@@ -5,6 +5,7 @@
 xcuserdata/
 /.swiftpm/xcode/package.xcworkspace/*
 /.swiftpm/xcode/xcuserdata/*
+/DroidKaigi Feeder/DroidKaigi Feeder/Release/
 
 # SwiftGen generated
 Generated/

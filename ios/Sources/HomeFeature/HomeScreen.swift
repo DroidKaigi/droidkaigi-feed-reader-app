@@ -32,16 +32,15 @@ public struct HomeScreen: View {
                                 }
                             )
                         }
-                        
+
                         Separator()
-                        
+
                         // FIXME: when url is ready
                         // QuestionnaireView(tapAnswerAction: {
                         //     viewStore.send(.answerQuestionnaire)
                         // })
-                        
-                        Separator()
-                        
+//                        Separator()
+
                         ForEach(viewStore.listFeedContents) { feedContent in
                             ListItem(
                                 content: feedContent,
@@ -67,15 +66,16 @@ public struct HomeScreen: View {
                     AssetImage.logoTitle.image
                 }
             }
-            .navigationBarItems(
-                trailing: Button(action: {
-                    ViewStore(store).send(.showSetting)
-                }, label: {
-                    AssetImage.iconSetting.image
-                        .renderingMode(.template)
-                        .foregroundColor(AssetColor.Base.primary.color)
-                })
-            )
+            // TODO: enable when setting implemented
+//            .navigationBarItems(
+//                trailing: Button(action: {
+//                    ViewStore(store).send(.showSetting)
+//                }, label: {
+//                    AssetImage.iconSetting.image
+//                        .renderingMode(.template)
+//                        .foregroundColor(AssetColor.Base.primary.color)
+//                })
+//            )
         }
     }
 }
