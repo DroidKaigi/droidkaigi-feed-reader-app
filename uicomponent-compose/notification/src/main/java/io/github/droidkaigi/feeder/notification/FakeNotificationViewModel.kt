@@ -1,6 +1,5 @@
 package io.github.droidkaigi.feeder.notification
 
-import androidx.lifecycle.ViewModel
 import io.github.droidkaigi.feeder.AppError
 import io.github.droidkaigi.feeder.NotificationContents
 import io.github.droidkaigi.feeder.fakeNotificationContents
@@ -24,7 +23,7 @@ fun fakeNotificationViewModel(errorFetchData: Boolean = false): FakeNotification
     return FakeNotificationViewModel(errorFetchData)
 }
 
-class FakeNotificationViewModel(errorFetchData: Boolean) : NotificationViewModel, ViewModel() {
+class FakeNotificationViewModel(errorFetchData: Boolean) : NotificationViewModel {
 
     private val effectChannel = Channel<NotificationViewModel.Effect>(Channel.UNLIMITED)
     override val effect: Flow<NotificationViewModel.Effect> = effectChannel.receiveAsFlow()

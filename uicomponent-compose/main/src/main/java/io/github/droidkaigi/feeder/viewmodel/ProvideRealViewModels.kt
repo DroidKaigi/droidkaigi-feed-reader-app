@@ -25,7 +25,7 @@ fun ProvideViewModels(content: @Composable () -> Unit) {
         provideStaffViewModelFactory { (hiltViewModel<RealStaffViewModel>()) },
         provideContributorViewModelFactory { hiltViewModel<RealContributorViewModel>() },
         provideFmPlayerViewModelFactory { hiltViewModel<RealFmPlayerViewModel>() },
-        provideNotificationViewModelFactory { hiltViewModel<FakeNotificationViewModel>() },
+        provideNotificationViewModelFactory { hiltViewModel<RealNotificationViewModel>() },
         content = content
     )
 }
