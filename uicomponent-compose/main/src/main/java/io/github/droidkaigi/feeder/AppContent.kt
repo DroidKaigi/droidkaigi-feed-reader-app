@@ -23,7 +23,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import io.github.droidkaigi.feeder.core.R as CoreR
 import io.github.droidkaigi.feeder.core.navigation.chromeCustomTabs
 import io.github.droidkaigi.feeder.core.navigation.navigateChromeCustomTabs
 import io.github.droidkaigi.feeder.core.navigation.rememberCustomNavController
@@ -31,15 +30,11 @@ import io.github.droidkaigi.feeder.feed.FeedScreen
 import io.github.droidkaigi.feeder.feed.FeedTab
 import io.github.droidkaigi.feeder.other.OtherScreen
 import io.github.droidkaigi.feeder.other.OtherTab
-import io.github.droidkaigi.feeder.timetable2021.TimetableDetailScreen
-import io.github.droidkaigi.feeder.timetable2021.TimetableScreen
-import io.github.droidkaigi.feeder.timetable2021.TimetableTab
 import kotlinx.coroutines.launch
+import io.github.droidkaigi.feeder.core.R as CoreR
 
 private const val FEED_PATH = "feed/"
 private const val OTHER_PATH = "other/"
-private const val TIMETABLE_PATH = "timetable/"
-private const val TIMETABLE_DETAIL_PATH = "timetable/detail/"
 
 private val drawerOpenedStatusBarColor = Color.Black.copy(alpha = 0.48f)
 
@@ -117,58 +112,6 @@ fun AppContent(
                 )
             }
             composable(
-                route = "$TIMETABLE_PATH{timeTable}",
-                deepLinks = listOf(
-                    navDeepLink {
-                        uriPattern = "$deepLinkUri/$TIMETABLE_PATH{timeTable}"
-                    }
-                ),
-                arguments = listOf(
-                    navArgument("timeTable") {
-                        type = NavType.StringType
-                    }
-                )
-            ) { backStackEntry ->
-                val routePath = rememberRoutePath(
-                    backStackEntry.arguments?.getString("timeTable")
-                        ?: OtherTab.AboutThisApp.routePath
-                )
-                val selectedTab = TimetableTab.ofRoutePath(routePath.value)
-                drawerContentState.onSelectDrawerContent(selectedTab)
-                TimetableScreen(
-                    selectedTab = selectedTab,
-                    onNavigationIconClick = onNavigationIconClick,
-                    onSelectedTab = {},
-                    onDetailClick = { id ->
-                        actions.onSelectTimetableDetail(id)
-                    },
-                )
-            }
-            composable(
-                route = "$TIMETABLE_DETAIL_PATH{id}",
-                deepLinks = listOf(
-                    navDeepLink {
-                        uriPattern = "$deepLinkUri/$TIMETABLE_DETAIL_PATH{id}"
-                    }
-                ),
-                arguments = listOf(
-                    navArgument("id") {
-                        type = NavType.StringType
-                    }
-                )
-            ) { backStackEntry ->
-                val routePath = rememberRoutePath(
-                    backStackEntry.arguments?.getString("id") ?: ""
-                )
-                val id = routePath.value
-                TimetableDetailScreen(
-                    id = TimetableItemId(id),
-                    onNavigationIconClick = {
-                        actions.onBackFromTimetableDetail()
-                    },
-                )
-            }
-            composable(
                 route = "$OTHER_PATH{otherTab}",
                 deepLinks = listOf(
                     navDeepLink {
@@ -230,14 +173,6 @@ private class AppActions(navController: NavHostController) {
                 }
             }
         }
-    }
-
-    val onSelectTimetableDetail: (TimetableItemId) -> Unit = { id ->
-        navController.navigate(TIMETABLE_DETAIL_PATH + id.value)
-    }
-
-    val onBackFromTimetableDetail: () -> Unit = {
-        navController.popBackStack()
     }
 
     val showChromeCustomTabs: (String) -> Unit = { link ->

@@ -3,7 +3,6 @@ package io.github.droidkaigi.feeder.repository
 import io.github.droidkaigi.feeder.NonNullFlowWrapper
 import io.github.droidkaigi.feeder.NonNullSuspendWrapper
 import io.github.droidkaigi.feeder.TimetableContents
-import io.github.droidkaigi.feeder.TimetableItemId
 
 interface IosTimetableRepository {
     fun timetableContents(): NonNullFlowWrapper<TimetableContents>

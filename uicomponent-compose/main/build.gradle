@@ -28,7 +28,6 @@ dependencies {
     api projects.uicomponentCompose.core
     api projects.uicomponentCompose.feed
     api projects.uicomponentCompose.notification
-    api projects.uicomponentCompose.timetable2021
     api projects.uicomponentCompose.other
     api projects.model
 

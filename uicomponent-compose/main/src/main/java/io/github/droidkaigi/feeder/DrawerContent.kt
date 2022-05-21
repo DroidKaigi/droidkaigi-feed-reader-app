@@ -1,9 +1,7 @@
 package io.github.droidkaigi.feeder
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +14,6 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.Android
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
@@ -35,7 +32,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -44,7 +40,6 @@ import io.github.droidkaigi.feeder.core.theme.AppThemeWithBackground
 import io.github.droidkaigi.feeder.feed.FeedTab
 import io.github.droidkaigi.feeder.main.R
 import io.github.droidkaigi.feeder.other.OtherTab
-import io.github.droidkaigi.feeder.timetable2021.TimetableTab
 
 enum class DrawerContents(
     val group: Group,
@@ -76,12 +71,6 @@ enum class DrawerContents(
         label = "PODCAST",
         route = "feed/${FeedTab.FilteredFeed.Podcast.routePath}"
     ),
-    TIMETABLE(
-        group = Group.TIMETABLE2021,
-        imageVector = Icons.Filled.AccessTime,
-        label = "TIME TABLE",
-        route = "timetable/${OtherTab.AboutThisApp.routePath}"
-    ),
     ABOUT_DROIDKAIGI(
         group = Group.OTHER,
         imageVector = Icons.Filled.Android,
@@ -109,7 +98,8 @@ enum class DrawerContents(
     ;
 
     enum class Group {
-        NEWS, TIMETABLE2021, OTHER;
+        NEWS,
+        OTHER;
     }
 }
 
@@ -130,10 +120,6 @@ class DrawerContentState(
 
     fun onSelectDrawerContent(feedTab: FeedTab) {
         selectDrawerContent("feed/${feedTab.routePath}")
-    }
-
-    fun onSelectDrawerContent(timetableTab: TimetableTab) {
-        selectDrawerContent("timetable/${timetableTab.routePath}")
     }
 
     fun onSelectDrawerContent(otherTab: OtherTab) {
@@ -196,35 +182,11 @@ fun DrawerContent(
                     Spacer(modifier = Modifier.height(8.dp))
                     Divider()
                 }
-                DrawerContents.Group.TIMETABLE2021 -> {
-                    val newsContents = DrawerContents.values()
-                        .filter { content ->
-                            content.group == DrawerContents.Group.TIMETABLE2021
-                        }
-                    DrawerContentGroup(newsContents, currentRoute, onNavigate)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Divider()
-                }
                 DrawerContents.Group.OTHER -> {
                     val otherContents = DrawerContents.values()
                         .filter { content -> content.group == DrawerContents.Group.OTHER }
                     DrawerContentGroup(otherContents, currentRoute, onNavigate)
                 }
-            }
-        }
-        item {
-            Spacer(modifier = Modifier.height(12.dp))
-            Divider()
-            Box(
-                modifier = Modifier.padding(start = 24.dp, top = 17.dp, bottom = 26.dp)
-            ) {
-                Image(
-                    modifier = Modifier.clickable {
-                        onNavigate(DrawerContents.TIMETABLE)
-                    },
-                    painter = painterResource(id = R.drawable.banner_droidkaigi_2021),
-                    contentDescription = stringResource(id = R.string.banner_droidkaigi_2021)
-                )
             }
         }
     }

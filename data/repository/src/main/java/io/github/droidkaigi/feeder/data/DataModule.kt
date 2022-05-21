@@ -11,20 +11,12 @@ import io.github.droidkaigi.feeder.repository.LanguageRepository
 import io.github.droidkaigi.feeder.repository.NotificationRepository
 import io.github.droidkaigi.feeder.repository.StaffRepository
 import io.github.droidkaigi.feeder.repository.ThemeRepository
-import io.github.droidkaigi.feeder.repository.TimetableRepository
 
 @InstallIn(SingletonComponent::class)
 @Module
 class DataModule {
     @Provides
     internal fun provideFeedApi(daggerApi: DaggerKtorFeedApi): FeedApi {
-        return daggerApi
-    }
-
-    @Provides
-    internal fun provideDroidKaigi2021Api(
-        daggerApi: DaggerKtorDroidKaigi2021Api,
-    ): DroidKaigi2021Api {
         return daggerApi
     }
 
@@ -67,18 +59,6 @@ class DataModule {
     internal fun provideNotificationRepository(
         daggerRepository: DaggerNotificationRepositoryImpl,
     ): NotificationRepository {
-        return daggerRepository
-    }
-
-    @Provides
-    internal fun provideTimetableItemDao(timetableItemDao: DaggerSQLDelightTimetableItemDao):
-        TimetableItemDao {
-        return timetableItemDao
-    }
-
-    @Provides
-    internal fun provideTimetableRepository(daggerRepository: DaggerTimetableRepositoryImpl):
-        TimetableRepository {
         return daggerRepository
     }
 
