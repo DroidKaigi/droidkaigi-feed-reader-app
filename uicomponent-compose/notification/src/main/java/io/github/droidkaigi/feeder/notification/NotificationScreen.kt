@@ -3,10 +3,13 @@ package io.github.droidkaigi.feeder.notification
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
@@ -22,6 +25,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.LocalWindowInsets
@@ -29,6 +33,7 @@ import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.pager.ExperimentalPagerApi
 import io.github.droidkaigi.feeder.NotificationContents
+import io.github.droidkaigi.feeder.NotificationItem
 import io.github.droidkaigi.feeder.NotificationItemId
 import io.github.droidkaigi.feeder.core.R
 import io.github.droidkaigi.feeder.core.theme.AppThemeWithBackground
@@ -89,13 +94,17 @@ private fun NotificationScreen(
             AppBar(onNavigationIconClick)
         }
     ) {
-        NotificationList(notificationContents = state.notificationContents)
+        NotificationList(
+            notificationContents = state.notificationContents,
+            onDetailClick = onDetailClick
+        )
     }
 }
 
 @Composable
 private fun NotificationList(
     notificationContents: NotificationContents,
+    onDetailClick: (NotificationItemId) -> Unit,
 ) {
     Surface(
         color = MaterialTheme.colors.background,
@@ -109,18 +118,50 @@ private fun NotificationList(
                 applyEnd = false
             )
         ) {
-            items(notificationContents.notificationItems) { item ->
-                // FIXME: Apply design.
-                Column {
-                    Text(text = item.title)
-                    Text(text = item.content)
-                    Text(text = item.publishedAt.toString())
-                    Divider()
-                }
+            itemsIndexed(
+                items = notificationContents.notificationItems,
+                key = { _, item -> item.id }
+            ) { index, item ->
+                NotificationListItem(
+                    item = item,
+                    onDetailClick = onDetailClick,
+                    showDivider = index > 0
+                )
             }
         }
     }
 
+}
+
+@Composable
+fun NotificationListItem(
+    item: NotificationItem,
+    onDetailClick: (NotificationItemId) -> Unit,
+    showDivider: Boolean,
+) {
+    Column(
+        modifier = Modifier
+            .clickable { onDetailClick(NotificationItemId(item.id)) }
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+    ) {
+        if (showDivider) Divider()
+        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+            Text(text = item.title,
+                style = MaterialTheme.typography.h4,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            Text(
+                text = item.content,
+                style = MaterialTheme.typography.body1
+            )
+            Text(
+                text = item.publishedAt.toString(),
+                style = MaterialTheme.typography.caption
+            )
+        }
+    }
 }
 
 @OptIn(ExperimentalPagerApi::class)

@@ -5,6 +5,8 @@ import androidx.compose.material.DrawerDefaults
 import androidx.compose.material.DrawerValue
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ModalDrawer
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,6 +24,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
+import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.github.droidkaigi.feeder.core.navigation.chromeCustomTabs
 import io.github.droidkaigi.feeder.core.navigation.navigateChromeCustomTabs
@@ -211,7 +214,10 @@ fun AppContent(
                     }
                 )
             ) {
-                // TODO: Show the notification detail screen.
+                // TODO: Show the notification detail.
+                Surface(modifier = Modifier.statusBarsPadding()) {
+                    Text(text = "Under construction")
+                }
             }
             composable(
                 route = "$OTHER_PATH{otherTab}",
