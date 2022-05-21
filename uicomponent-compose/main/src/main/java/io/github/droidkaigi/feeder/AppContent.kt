@@ -26,6 +26,7 @@ import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import io.github.droidkaigi.feeder.core.R as CoreR
 import io.github.droidkaigi.feeder.core.navigation.chromeCustomTabs
 import io.github.droidkaigi.feeder.core.navigation.navigateChromeCustomTabs
 import io.github.droidkaigi.feeder.core.navigation.rememberCustomNavController
@@ -39,7 +40,6 @@ import io.github.droidkaigi.feeder.timetable2021.TimetableDetailScreen
 import io.github.droidkaigi.feeder.timetable2021.TimetableScreen
 import io.github.droidkaigi.feeder.timetable2021.TimetableTab
 import kotlinx.coroutines.launch
-import io.github.droidkaigi.feeder.core.R as CoreR
 
 private const val FEED_PATH = "feed/"
 private const val OTHER_PATH = "other/"

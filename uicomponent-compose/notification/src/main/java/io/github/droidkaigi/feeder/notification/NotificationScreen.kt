@@ -39,7 +39,6 @@ import io.github.droidkaigi.feeder.core.R
 import io.github.droidkaigi.feeder.core.theme.AppThemeWithBackground
 import io.github.droidkaigi.feeder.core.use
 
-
 sealed class NotificationTab(val name: String, val routePath: String) {
     object Alert : NotificationTab("Alert", "alert")
     object Notification : NotificationTab("Notification", "notification")
@@ -130,7 +129,6 @@ private fun NotificationList(
             }
         }
     }
-
 }
 
 @Composable
@@ -147,7 +145,8 @@ fun NotificationListItem(
     ) {
         if (showDivider) Divider()
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-            Text(text = item.title,
+            Text(
+                text = item.title,
                 style = MaterialTheme.typography.h4,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
