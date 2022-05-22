@@ -1,4 +1,6 @@
-# ![DroidKaigi Logo](uicomponent-compose/main/src/main/res/drawable-xxhdpi/ic_logo.png) DroidKaigi 2021 official app
+# ![DroidKaigi Logo](uicomponent-compose/main/src/main/res/drawable-xxhdpi/ic_logo.png) Official DroidKaigi feed reader
+
+Forked from DroidKaigi 2021 app due to continued development.
 
 # Guides
 
