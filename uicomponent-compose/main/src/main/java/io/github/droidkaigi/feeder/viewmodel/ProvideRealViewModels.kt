@@ -11,16 +11,12 @@ import io.github.droidkaigi.feeder.notification.provideNotificationViewModelFact
 import io.github.droidkaigi.feeder.provideAppViewModelFactory
 import io.github.droidkaigi.feeder.setting.provideSettingViewModelFactory
 import io.github.droidkaigi.feeder.staff.provideStaffViewModelFactory
-import io.github.droidkaigi.feeder.timetable2021.provideTimetableDetailViewModelFactory
-import io.github.droidkaigi.feeder.timetable2021.provideTimetableViewModelFactory
 
 @Composable
 fun ProvideViewModels(content: @Composable () -> Unit) {
     CompositionLocalProvider(
         provideAppViewModelFactory { hiltViewModel<RealAppViewModel>() },
         provideFeedViewModelFactory { hiltViewModel<RealFeedViewModel>() },
-        provideTimetableViewModelFactory { hiltViewModel<RealTimetableViewModel>() },
-        provideTimetableDetailViewModelFactory { hiltViewModel<RealTimetableDetailViewModel>() },
         provideSettingViewModelFactory { hiltViewModel<RealSettingViewModel>() },
         provideStaffViewModelFactory { (hiltViewModel<RealStaffViewModel>()) },
         provideContributorViewModelFactory { hiltViewModel<RealContributorViewModel>() },

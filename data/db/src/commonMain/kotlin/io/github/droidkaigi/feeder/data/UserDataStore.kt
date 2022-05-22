@@ -6,7 +6,6 @@ import com.russhwolf.settings.coroutines.toFlowSettings
 import io.github.droidkaigi.feeder.FeedItemId
 import io.github.droidkaigi.feeder.Lang
 import io.github.droidkaigi.feeder.Theme
-import io.github.droidkaigi.feeder.TimetableItemId
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -45,38 +44,6 @@ abstract class UserDataStore {
         flowSettings.putString(
             KEY_FAVORITES,
             (favorites().first() - id)
-                .map { it.value }
-                .toSet()
-                .joinToString(","),
-        )
-    }
-
-    fun favoriteTimetableItemIds(): Flow<Set<TimetableItemId>> {
-        return flowSettings
-            .getStringFlow(KEY_FAVORITES_TIMETABLE_ITEM_ID)
-            .map { favorites ->
-                favorites
-                    .split(",")
-                    .filter { it.isNotBlank() }
-                    .map { TimetableItemId(it) }
-                    .toSet()
-            }
-    }
-
-    suspend fun addFavoriteTimetableItemId(id: TimetableItemId) {
-        flowSettings.putString(
-            KEY_FAVORITES_TIMETABLE_ITEM_ID,
-            (favoriteTimetableItemIds().first() + id)
-                .map { it.value }
-                .toSet()
-                .joinToString(","),
-        )
-    }
-
-    suspend fun removeFavoriteTimetableItemId(id: TimetableItemId) {
-        flowSettings.putString(
-            KEY_FAVORITES_TIMETABLE_ITEM_ID,
-            (favoriteTimetableItemIds().first() - id)
                 .map { it.value }
                 .toSet()
                 .joinToString(","),
