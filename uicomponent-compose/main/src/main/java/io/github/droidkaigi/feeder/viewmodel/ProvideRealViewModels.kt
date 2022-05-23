@@ -6,7 +6,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import io.github.droidkaigi.feeder.contributor.provideContributorViewModelFactory
 import io.github.droidkaigi.feeder.feed.provideFeedViewModelFactory
 import io.github.droidkaigi.feeder.feed.provideFmPlayerViewModelFactory
-import io.github.droidkaigi.feeder.notification.FakeNotificationViewModel
 import io.github.droidkaigi.feeder.notification.provideNotificationViewModelFactory
 import io.github.droidkaigi.feeder.provideAppViewModelFactory
 import io.github.droidkaigi.feeder.setting.provideSettingViewModelFactory
@@ -25,7 +24,7 @@ fun ProvideViewModels(content: @Composable () -> Unit) {
         provideStaffViewModelFactory { (hiltViewModel<RealStaffViewModel>()) },
         provideContributorViewModelFactory { hiltViewModel<RealContributorViewModel>() },
         provideFmPlayerViewModelFactory { hiltViewModel<RealFmPlayerViewModel>() },
-        provideNotificationViewModelFactory { hiltViewModel<FakeNotificationViewModel>() },
+        provideNotificationViewModelFactory { hiltViewModel<RealNotificationViewModel>() },
         content = content
     )
 }

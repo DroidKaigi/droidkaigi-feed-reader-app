@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.Android
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MicNone
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.TextSnippet
 import androidx.compose.material.icons.filled.Videocam
@@ -43,6 +44,7 @@ import com.google.accompanist.insets.navigationBarsPadding
 import io.github.droidkaigi.feeder.core.theme.AppThemeWithBackground
 import io.github.droidkaigi.feeder.feed.FeedTab
 import io.github.droidkaigi.feeder.main.R
+import io.github.droidkaigi.feeder.notification.NotificationTab
 import io.github.droidkaigi.feeder.other.OtherTab
 import io.github.droidkaigi.feeder.timetable2021.TimetableTab
 
@@ -82,6 +84,12 @@ enum class DrawerContents(
         label = "TIME TABLE",
         route = "timetable/${OtherTab.AboutThisApp.routePath}"
     ),
+    NOTIFICATION(
+        group = Group.NOTIFICATION,
+        imageVector = Icons.Filled.Notifications,
+        label = "NOTIFICATION",
+        route = "notification/${NotificationTab.Notification.routePath}"
+    ),
     ABOUT_DROIDKAIGI(
         group = Group.OTHER,
         imageVector = Icons.Filled.Android,
@@ -109,7 +117,7 @@ enum class DrawerContents(
     ;
 
     enum class Group {
-        NEWS, TIMETABLE2021, OTHER;
+        NEWS, TIMETABLE2021, NOTIFICATION, OTHER;
     }
 }
 
@@ -134,6 +142,10 @@ class DrawerContentState(
 
     fun onSelectDrawerContent(timetableTab: TimetableTab) {
         selectDrawerContent("timetable/${timetableTab.routePath}")
+    }
+
+    fun onSelectDrawerContent(notificationTab: NotificationTab) {
+        selectDrawerContent("notification/${notificationTab.routePath}")
     }
 
     fun onSelectDrawerContent(otherTab: OtherTab) {
@@ -202,6 +214,15 @@ fun DrawerContent(
                             content.group == DrawerContents.Group.TIMETABLE2021
                         }
                     DrawerContentGroup(newsContents, currentRoute, onNavigate)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Divider()
+                }
+                DrawerContents.Group.NOTIFICATION -> {
+                    val notificationContents = DrawerContents.values()
+                        .filter { content ->
+                            content.group == DrawerContents.Group.NOTIFICATION
+                        }
+                    DrawerContentGroup(notificationContents, currentRoute, onNavigate)
                     Spacer(modifier = Modifier.height(8.dp))
                     Divider()
                 }

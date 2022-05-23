@@ -14,6 +14,7 @@ interface NotificationViewModel :
         NotificationViewModel.Effect,
         NotificationViewModel.State
         > {
+
     data class State(
         val showProgress: Boolean = false,
         val notificationContents: NotificationContents = NotificationContents(),
